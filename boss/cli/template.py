@@ -259,7 +259,8 @@ class TemplateManager(object):
 
     def copy(self, dest_basedir):
         self._populate_vars()
-        dest_basedir = fs.abspath(dest_basedir)
+        dest_basedir = fs.abspath(dest_basedir).replace("\\", "\\\\")
+        basedir = str(self.basedir).replace("\\", "\\\\")
 
         # first handle local files
         for tmpl_path in self._walk_path(self.basedir):
